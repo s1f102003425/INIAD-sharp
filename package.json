@@ -16,7 +16,7 @@
     "lint:style": "stylelint '**/*.css' --ignore-path .gitignore --allow-empty-input",
     "lint:fix": "pnpm lint:js --fix && prettier --write \"./**/*.{ts,tsx,js}\" --ignore-path .gitignore && pnpm lint:style --fix",
     "test": "plasmo test",
-    "hcm": "hcm './**/*.module.css",
+    "hcm": "hcm './**/*.module.css'",
     "typecheck": "pnpm hcm && tsc --noEmit"
   },
   "dependencies": {
