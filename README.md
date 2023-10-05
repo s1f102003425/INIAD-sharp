@@ -8,6 +8,10 @@ INIAD生のためのmoocs拡張機能
 ### リポジトリのクローンとライブラリのインストール
 
 ```sh
+corepack enable
+```
+
+```sh
 pnpm i --frozen-lockfile
 ```
 
