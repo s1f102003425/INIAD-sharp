@@ -1,0 +1,57 @@
+{
+  "name": "iniad-sharp",
+  "displayName": "Iniad sharp",
+  "version": "0.0.1",
+  "description": "A basic Plasmo extension.",
+  "author": "JunEguchi",
+  "scripts": {
+    "notios": "notios dev",
+    "dev": "run-p dev:*",
+    "dev:plasmo": "plasmo dev",
+    "dev:hcm": "hcm './**/*.module.css' -w --ignore-path .gitignore",
+    "build": "plasmo build",
+    "lint": "pnpm run lint:js && pnpm run lint:prettier && pnpm run lint:style",
+    "lint:js": "eslint --ext .ts,.tsx,.js --ignore-path .gitignore .",
+    "lint:prettier": "prettier --check \"./**/*.{ts,tsx,js}\" --ignore-path .gitignore",
+    "lint:style": "stylelint '**/*.css' --ignore-path .gitignore --allow-empty-input",
+    "lint:fix": "pnpm lint:js --fix && prettier --write \"./**/*.{ts,tsx,js}\" --ignore-path .gitignore && pnpm lint:style --fix",
+    "test": "plasmo test",
+    "hcm": "hcm './**/*.module.css'",
+    "typecheck": "pnpm hcm && tsc --noEmit"
+  },
+  "dependencies": {
+    "plasmo": "0.83.0",
+    "react": "18.2.0",
+    "react-dom": "18.2.0"
+  },
+  "devDependencies": {
+    "@ianvs/prettier-plugin-sort-imports": "4.1.0",
+    "@types/chrome": "0.0.245",
+    "@types/node": "20.5.9",
+    "@types/react": "18.2.21",
+    "@types/react-dom": "18.2.7",
+    "@typescript-eslint/eslint-plugin": "^6.7.4",
+    "@typescript-eslint/parser": "^6.7.4",
+    "eslint": "^8.50.0",
+    "eslint-config-prettier": "^9.0.0",
+    "eslint-plugin-react": "^7.33.2",
+    "eslint-plugin-react-hooks": "^4.6.0",
+    "eslint-plugin-typescript": "^0.14.0",
+    "happy-css-modules": "^2.1.2",
+    "less": "^4.2.0",
+    "notios": "^0.4.1",
+    "postcss": "^8.4.31",
+    "prettier": "3.0.3",
+    "sass": "^1.68.0",
+    "stylelint": "^15.10.3",
+    "stylelint-config-prettier": "^9.0.5",
+    "stylelint-config-recess-order": "^4.3.0",
+    "stylelint-config-standard": "^34.0.0",
+    "typescript": "5.2.2"
+  },
+  "manifest": {
+    "host_permissions": [
+      "https://*/*"
+    ]
+  }
+}
