@@ -7,7 +7,7 @@ module.exports = {
     "plugin:@typescript-eslint/eslint-recommended",
     "prettier"
   ],
-  plugins: ["@typescript-eslint", "react"],
+  plugins: ["@typescript-eslint", "react", "react-hooks"],
   parser: "@typescript-eslint/parser",
   env: {
     browser: true,
