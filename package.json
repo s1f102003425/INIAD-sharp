@@ -3,7 +3,7 @@
   "displayName": "Iniad sharp",
   "version": "0.0.1",
   "description": "A basic Plasmo extension.",
-  "author": "EguchiJun",
+  "author": "INIAD.ts",
   "scripts": {
     "dev": "plasmo dev",
     "build": "plasmo build",
