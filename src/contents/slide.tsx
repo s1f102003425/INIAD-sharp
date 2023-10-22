@@ -1,6 +1,6 @@
 import axios from "axios"
 
-const urls = []
+const urls: string[] = []
 
 const getSlideData = (): Promise<string> => {
   return axios
