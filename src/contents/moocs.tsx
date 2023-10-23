@@ -31,6 +31,9 @@ const FetchDeadLineData = () => {
         <p>
           {`${data.cs2.description}, ${data.cs2.deadline.month}/${data.cs2.deadline.day}/${data.cs2.deadline.hour}時`}
         </p>
+        <p>
+          {`${data.情報連携学概論.description}, ${data.情報連携学概論.deadline.month}/${data.情報連携学概論.deadline.day} at ${data.情報連携学概論.deadline.hour}:00`}
+        </p>
       </div>
     </div>
   )
