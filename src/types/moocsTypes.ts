@@ -11,13 +11,11 @@ export type Assignment = {
 }
 
 export type Course = {
-  [key: string]: Assignment[]
+  [key: string]: Assignment
 }
 
 export type Data = {
-  cs2: Course
-  RW2: {
-    class2: Assignment[]
-  }
-  情報連携学概論: Course
+  cs2: Assignment
+  RW2: Course
+  情報連携学概論: Assignment
 }
