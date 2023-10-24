@@ -1,3 +1,5 @@
+import { type } from "os"
+
 export type Deadline = {
   year: number
   month: number
@@ -5,17 +7,25 @@ export type Deadline = {
   hour: number
 }
 
-export type Assignment = {
+export type ClassInfo = {
+  name: string
   description: string
   deadline: Deadline
 }
 
-export type Course = {
-  [key: string]: Assignment
+export type Classes = {
+  [key: string]: ClassInfo | Curses
 }
 
+export type Curses = {
+  [key: string]: ClassInfo
+}
+
+type YearData = {
+  [year: number]: {
+    classes: Classes
+  }
+}
 export type Data = {
-  cs2: Assignment
-  RW2: Course
-  情報連携学概論: Assignment
+  year: YearData
 }
