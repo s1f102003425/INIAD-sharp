@@ -1,5 +1,3 @@
-import { type } from "os"
-
 export type Deadline = {
   year: number
   month: number
@@ -9,6 +7,7 @@ export type Deadline = {
 
 export type ClassInfo = {
   name: string
+  curse?: string
   description: string
   deadline: Deadline
 }
