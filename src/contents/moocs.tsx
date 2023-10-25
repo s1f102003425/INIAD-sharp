@@ -50,19 +50,11 @@ const FetchDeadLineData = () => {
 
   if (!data) return <div>GettingData</div>
 
+  console.log(data.year[2023].classes["RW2"].curses["class2"].name)
+
   return (
     <div>
-      <div>
-        <p>
-          {`${data.year[2023].classes["RW2"].name}-${data.year[2023].classes["class2"].description}, ${data.RW2.class2.deadline.month}/${data.RW2.class2.deadline.day}/${data.RW2.class2.deadline.hour}時`}
-        </p>
-        <p>
-          {`${data.cs2.description}, ${data.cs2.deadline.month}/${data.cs2.deadline.day}/${data.cs2.deadline.hour}時`}
-        </p>
-        <p>
-          {`${data.情報連携学概論.description}, ${data.情報連携学概論.deadline.month}/${data.情報連携学概論.deadline.day}/${data.情報連携学概論.deadline.hour}時`}
-        </p>
-      </div>
+      <div>{data.year[2023].classes["RW2"].curses["class2"].deadline.day}</div>
     </div>
   )
 }

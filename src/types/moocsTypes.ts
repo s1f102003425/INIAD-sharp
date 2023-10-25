@@ -7,17 +7,18 @@ export type Deadline = {
 
 export type ClassInfo = {
   name: string
-  curse?: string
   description: string
   deadline: Deadline
 }
 
-export type Classes = {
-  [key: string]: ClassInfo | Curses
-}
-
 export type Curses = {
   [key: string]: ClassInfo
+}
+
+export type Classes = {
+  [key: string]: {
+    curses: Curses | { [key: string]: ClassInfo }
+  }
 }
 
 type YearData = {
@@ -25,6 +26,7 @@ type YearData = {
     classes: Classes
   }
 }
+
 export type Data = {
   year: YearData
 }
