@@ -4,42 +4,6 @@ import type { Data } from "src/types/moocsTypes"
 
 const url = `https://raw.githubusercontent.com/jun-eg/deadline-json-fork/main/data.json`
 
-const tesydata = {
-  year: {
-    "2023": {
-      classes: {
-        cs2: {
-          curses: {
-            class2: {
-              name: "cs2 class2",
-              description: "Computer Science 2",
-              deadline: { year: 23, month: 10, day: 14, hour: 23 }
-            }
-          }
-        },
-        RW2: {
-          curses: {
-            class2: {
-              name: "RW2 class2",
-              description: "Writing Assignment 1",
-              deadline: { year: 23, month: 10, day: 14, hour: 23 }
-            }
-          }
-        },
-        情報連携学概論: {
-          curses: {
-            none: {
-              name: "情報の連携学概論",
-              description: "4-1",
-              deadline: { year: 23, month: 10, day: 14, hour: 23 }
-            }
-          }
-        }
-      }
-    }
-  }
-}
-
 const FetchDeadLineData = () => {
   const [data, setData] = useState<Data | null>(null)
 
