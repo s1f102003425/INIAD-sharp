@@ -16,9 +16,7 @@ export type Curses = {
 }
 
 export type Classes = {
-  [key: string]: {
-    curses: Curses | { [key: string]: ClassInfo }
-  }
+  [key: string]: Classes
 }
 
 type YearData = {

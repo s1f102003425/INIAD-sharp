@@ -6,12 +6,16 @@ const url = `https://raw.githubusercontent.com/jun-eg/deadline-json-fork/main/da
 
 const tesydata = {
   year: {
-    2023: {
+    "2023": {
       classes: {
         cs2: {
-          name: "cs2",
-          description: "Computer Science 2",
-          deadline: { year: 23, month: 10, day: 14, hour: 23 }
+          curses: {
+            class2: {
+              name: "cs2 class2",
+              description: "Computer Science 2",
+              deadline: { year: 23, month: 10, day: 14, hour: 23 }
+            }
+          }
         },
         RW2: {
           curses: {
@@ -23,9 +27,13 @@ const tesydata = {
           }
         },
         情報連携学概論: {
-          name: "情報の連携学概論",
-          description: "4-1",
-          deadline: { year: 23, month: 10, day: 14, hour: 23 }
+          curses: {
+            none: {
+              name: "情報の連携学概論",
+              description: "4-1",
+              deadline: { year: 23, month: 10, day: 14, hour: 23 }
+            }
+          }
         }
       }
     }
@@ -50,11 +58,17 @@ const FetchDeadLineData = () => {
 
   if (!data) return <div>GettingData</div>
 
-  console.log(data.year[2023].classes["RW2"].curses["class2"].name)
-
   return (
     <div>
-      <div>{data.year[2023].classes["RW2"].curses["class2"].deadline.day}</div>
+      <p>
+        {`${data.year[2023].classes["RW2"].curses["class2"].name}, ${data.year[2023].classes["RW2"].curses["class2"].description},${data.year[2023].classes["RW2"].curses["class2"].deadline.month}/${data.year[2023].classes["RW2"].curses["class2"].deadline.day}/${data.year[2023].classes["RW2"].curses["class2"].deadline.hour}時`}
+      </p>
+      <p>
+        {`${data.year[2023].classes["cs2"].curses["class2"].name}, ${data.year[2023].classes["cs2"].curses["class2"].description},${data.year[2023].classes["cs2"].curses["class2"].deadline.month}/${data.year[2023].classes["cs2"].curses["class2"].deadline.day}/${data.year[2023].classes["cs2"].curses["class2"].deadline.hour}時`}
+      </p>
+      <p>
+        {`${data.year[2023].classes["情報連携学概論"].curses["none"].name}, ${data.year[2023].classes["情報連携学概論"].curses["none"].description},${data.year[2023].classes["情報連携学概論"].curses["none"].deadline.month}/${data.year[2023].classes["情報連携学概論"].curses["none"].deadline.day}/${data.year[2023].classes["情報連携学概論"].curses["none"].deadline.hour}時`}
+      </p>
     </div>
   )
 }
