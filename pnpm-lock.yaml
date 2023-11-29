@@ -11,6 +11,9 @@ dependencies:
   dotenv:
     specifier: ^16.3.1
     version: 16.3.1
+  node-typescript:
+    specifier: ^0.1.3
+    version: 0.1.3
   plasmo:
     specifier: 0.83.0
     version: 0.83.0(postcss@8.4.31)(react-dom@18.2.0)(react@18.2.0)
@@ -5850,6 +5853,13 @@ packages:
   /node-releases@2.0.13:
     resolution: {integrity: sha512-uYr7J37ae/ORWdZeQ1xxMJe3NtdmqMC/JZK+geofDrkLUApKRHPd18/TxtBOJ4A0/+uUIliorNrfYV6s1b02eQ==}
 
+  /node-typescript@0.1.3:
+    resolution: {integrity: sha512-EK34kMXvdXsVvtzLZVQN3ORdLTQCG0gSnhkQOF8vzrO8beXoXqIUNAGACF9c6N5LDDzEdM8YCXFjbuCE8Mz1Jg==}
+    engines: {node: 0.8.x}
+    dependencies:
+      typescript: 0.8.3
+    dev: false
+
   /noms@0.0.0:
     resolution: {integrity: sha512-lNDU9VJaOPxUmXcLb+HQFeUgQQPtMI24Gt6hgfuMHRJgMRHMF/qZ4HJD3GDru4sSw9IQl2jPjAYnQrdIeLbwow==}
     dependencies:
@@ -7665,6 +7675,12 @@ packages:
       for-each: 0.3.3
       is-typed-array: 1.1.12
     dev: true
+
+  /typescript@0.8.3:
+    resolution: {integrity: sha512-42GP2FBgk+/q8Y0MRt0vJoWx6I7ADAKBTnz7gK++gwQtzC3h54Yltqb8z+EFozZ4OHhz6uwLmXFthCn4oDOGxg==}
+    engines: {node: '>=0.8.0'}
+    hasBin: true
+    dev: false
 
   /typescript@5.2.2:
     resolution: {integrity: sha512-mI4WrpHsbCIcwT9cF4FZvr80QUeKvsUsUvKDoR+X/7XHQH98xYD8YHZg7ANtz2GtZt/CBq2QJ0thkGJMHfqc1w==}
