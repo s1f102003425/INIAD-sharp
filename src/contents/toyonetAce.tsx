@@ -1,38 +1,42 @@
-import $ from "jquery"
 import type { PlasmoCSConfig } from "plasmo"
 import { useEffect } from "react"
 
 export const config: PlasmoCSConfig = {
-  matches: ["https://www.ace.toyo.ac.jp/ct/home*"],
+  matches: ["https://www.ace.toyo.ac.jp/ct/home"],
   all_frames: true
 }
+
 const ExtensionOfToyoNetAce = () => {
   useEffect(() => {
-    const dlButtonHtml =
-      '<button id="toyoNetAceDlButton">時間割をjsonにしてダウンロード</button>'
-    $(".mycourses-body").prepend(dlButtonHtml)
+    const downloadButton = document.createElement("button")
+    downloadButton.id = "toyoNetAceDlButton"
+    downloadButton.textContent = "時間割をjsonにしてダウンロード"
+
     const handleDownload = () => {
-      const confirmDownload: boolean = confirm(
+      const confirmDownload = confirm(
         "時間割をJSONとしてダウンロードしますか？"
       )
       if (confirmDownload) {
-        const table: HTMLElement | undefined = $(".stdlist").get(0)
+        const table = document.querySelector(".stdlist")
         if (table) {
-          const rows: JQuery<HTMLElement> = $(table).find("tr")
+          const rows = table.querySelectorAll("tr")
           const data: { [key: number]: string[] } = {}
-          rows.each(function (rowIndex: number) {
+
+          rows.forEach((row, rowIndex) => {
             if (rowIndex > 0) {
-              const cells: JQuery<HTMLElement> = $(this).find("td")
-              const rowData: string[] = []
-              cells.each(function () {
-                const cellData: string = $(this).text()
-                rowData.push(cellData)
+              const cells = row.querySelectorAll("td")
+              const rowData: string[] = Array.from(cells).map((cell) => {
+                return cell.textContent !== null &&
+                  cell.textContent !== undefined
+                  ? cell.textContent
+                  : ""
               })
               data[rowIndex] = rowData
             }
           })
-          const jsonData: string = JSON.stringify(data, null, 4)
-          const downloadLink: HTMLAnchorElement = document.createElement("a")
+
+          const jsonData = JSON.stringify(data, null, 4)
+          const downloadLink = document.createElement("a")
           downloadLink.href = URL.createObjectURL(
             new Blob([jsonData], { type: "application/json" })
           )
@@ -43,9 +47,16 @@ const ExtensionOfToyoNetAce = () => {
         }
       }
     }
-    $(document).on("click", "#toyoNetAceDlButton", handleDownload)
+    const container = document.querySelector(".mycourses-body")
+    if (container) {
+      container.prepend(downloadButton)
+      downloadButton.addEventListener("click", handleDownload)
+    }
     return () => {
-      $(document).off("click", "#toyoNetAceDlButton", handleDownload)
+      downloadButton.removeEventListener("click", handleDownload)
+      if (container && container.contains(downloadButton)) {
+        container.removeChild(downloadButton)
+      }
     }
   }, [])
 
