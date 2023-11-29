@@ -1,48 +1,40 @@
 import axios from "axios"
-import type { PlasmoCSConfig } from "plasmo"
-import React, { useEffect, useState } from "react"
+import { useCallback, useEffect, useState } from "react"
+import type { Data } from "src/types/moocsTypes"
 
-import type { Assignment, Data } from "../types/type"
-import styles from "./moocs/index.module.css"
+const url = `https://raw.githubusercontent.com/jun-eg/deadline-json-fork/main/data.json`
 
-export const config: PlasmoCSConfig = {
-  matches: ["https://moocs.iniad.org/*"],
-  all_frames: true
-}
-const ExtensionOfMoocs = () => {
+const FetchDeadLineData = () => {
   const [data, setData] = useState<Data | null>(null)
 
-  useEffect(() => {
-    console.log("aaaaaaaaaaasdddddddd")
-    const fetchFileContent = async () => {
-      const url =
-        "https://raw.githubusercontent.com/yuon7/deadline-json/main/data.json"
-
+  const getFiledata = useCallback(async () => {
+    try {
       const response = await axios.get<Data>(url)
       setData(response.data)
+    } catch (error) {
+      console.error(error)
     }
-
-    fetchFileContent()
   }, [])
-  const cs2IsArray = Array.isArray(data?.cs2)
+
+  useEffect(() => {
+    getFiledata()
+  }, [getFiledata])
+
+  if (!data) return <div>GettingData</div>
 
   return (
-    <div className={styles.container}>
-      {data ? (
-        <div>
-          <h1>
-            {cs2IsArray
-              ? `Year: ${(data.cs2 as Assignment[])[0].deadline.year}, Month: ${
-                  (data.cs2 as Assignment[])[0].deadline.month
-                }`
-              : "Not an array"}
-          </h1>
-        </div>
-      ) : (
-        <p>Loading...</p>
-      )}
+    <div>
+      <p>
+        {`${data.year[2023].classes["RW2"].curses["class2"].name}, ${data.year[2023].classes["RW2"].curses["class2"].description},${data.year[2023].classes["RW2"].curses["class2"].deadline.month}/${data.year[2023].classes["RW2"].curses["class2"].deadline.day}/${data.year[2023].classes["RW2"].curses["class2"].deadline.hour}時`}
+      </p>
+      <p>
+        {`${data.year[2023].classes["cs2"].curses["class2"].name}, ${data.year[2023].classes["cs2"].curses["class2"].description},${data.year[2023].classes["cs2"].curses["class2"].deadline.month}/${data.year[2023].classes["cs2"].curses["class2"].deadline.day}/${data.year[2023].classes["cs2"].curses["class2"].deadline.hour}時`}
+      </p>
+      <p>
+        {`${data.year[2023].classes["情報連携学概論"].curses["none"].name}, ${data.year[2023].classes["情報連携学概論"].curses["none"].description},${data.year[2023].classes["情報連携学概論"].curses["none"].deadline.month}/${data.year[2023].classes["情報連携学概論"].curses["none"].deadline.day}/${data.year[2023].classes["情報連携学概論"].curses["none"].deadline.hour}時`}
+      </p>
     </div>
   )
 }
 
-export default ExtensionOfMoocs
+export default FetchDeadLineData
