@@ -1,12 +1,40 @@
 import axios from "axios"
+import { useCallback, useEffect, useState } from "react"
+import type { Data } from "src/types/moocsTypes"
 
-const url = `https://raw.githubusercontent.com/yuon7/deadline-json/main/data.json`
+const url = `https://raw.githubusercontent.com/jun-eg/deadline-json-fork/main/data.json`
 
-const fetchFileContent = async () => {
-  const response = await axios.get(url)
-  const data = response.data
-  console.log(data)
-  console.log(data.cs2[0].内容)
+const FetchDeadLineData = () => {
+  const [data, setData] = useState<Data | null>(null)
+
+  const getFiledata = useCallback(async () => {
+    try {
+      const response = await axios.get<Data>(url)
+      setData(response.data)
+    } catch (error) {
+      console.error(error)
+    }
+  }, [])
+
+  useEffect(() => {
+    getFiledata()
+  }, [getFiledata])
+
+  if (!data) return <div>GettingData</div>
+
+  return (
+    <div>
+      <p>
+        {`${data.year[2023].classes["RW2"].curses["class2"].name}, ${data.year[2023].classes["RW2"].curses["class2"].description},${data.year[2023].classes["RW2"].curses["class2"].deadline.month}/${data.year[2023].classes["RW2"].curses["class2"].deadline.day}/${data.year[2023].classes["RW2"].curses["class2"].deadline.hour}時`}
+      </p>
+      <p>
+        {`${data.year[2023].classes["cs2"].curses["class2"].name}, ${data.year[2023].classes["cs2"].curses["class2"].description},${data.year[2023].classes["cs2"].curses["class2"].deadline.month}/${data.year[2023].classes["cs2"].curses["class2"].deadline.day}/${data.year[2023].classes["cs2"].curses["class2"].deadline.hour}時`}
+      </p>
+      <p>
+        {`${data.year[2023].classes["情報連携学概論"].curses["none"].name}, ${data.year[2023].classes["情報連携学概論"].curses["none"].description},${data.year[2023].classes["情報連携学概論"].curses["none"].deadline.month}/${data.year[2023].classes["情報連携学概論"].curses["none"].deadline.day}/${data.year[2023].classes["情報連携学概論"].curses["none"].deadline.hour}時`}
+      </p>
+    </div>
+  )
 }
 
-fetchFileContent()
+export default FetchDeadLineData
