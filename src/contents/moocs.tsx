@@ -1,7 +1,12 @@
 import axios from "axios"
+import type { PlasmoCSConfig } from "plasmo"
 import { useCallback, useEffect, useState } from "react"
 import type { Data } from "src/types/moocsTypes"
 
+export const config: PlasmoCSConfig = {
+  matches: ["https://moocs.iniad.org/*"],
+  all_frames: true
+}
 const url = `https://raw.githubusercontent.com/jun-eg/deadline-json-fork/main/data.json`
 
 const FetchDeadLineData = () => {
