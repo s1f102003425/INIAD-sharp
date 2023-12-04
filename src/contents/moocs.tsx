@@ -19,16 +19,11 @@ const fetchFileContent = async () => {
 
 export const config: PlasmoCSConfig = {
   matches: ["https://moocs.iniad.org/*"]
-  // matches: ["https://findy-code.io/home"]
 }
 
 export const getInlineAnchor: PlasmoGetInlineAnchor = async () => {
   const aside = document
-    // .querySelector("aside")
-    // ?.querySelector("section")
-    // ?.querySelector("ul > li:last-child") as Element
     .querySelector(".sidebar-menu.tree") as Element
-  // .querySelector(".custom-15x9owl") as Element
   return aside
 }
 
@@ -57,7 +52,7 @@ const PlasmoInline = () => {
 
     fetchData()
   }, [])
-  return <li style={styles}>{newdata ? JSON.stringify(newdata) : "Loading..."}</li>
+  return <li style={styles}>{newdata === null ? JSON.stringify(newdata) : "Loading..."}</li>
 }
 
 export default PlasmoInline
